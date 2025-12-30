@@ -1,0 +1,1 @@
+<img src="{{ asset('storage/dummy_logo.png') }}" alt="ロゴ">
