@@ -1,7 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 @section('title','ログイン')
 @section('content')
 <h1>ログイン</h1>
+@if($errors)
+@foreach($errors->all() as $error)
+<li>{{$error}}</li>
+@endforeach
+@endif
 <form action="{{ route('login') }}" method="post">
     @csrf
     <h2>メールアドレス</h2>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 @section('title','会員登録')
 @section('content')
 <form action="{{ route('register') }}" method="post">
