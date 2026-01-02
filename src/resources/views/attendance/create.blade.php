@@ -5,17 +5,29 @@
 <div id="timeNow"></div>
 
 @if(!$attendance)
-<form action="{{ route('attendance.clockIn') }}" method="post">
+<form action="{{ route('attendances.clockIn') }}" method="post">
     @csrf
     <button type="submit">出勤</button>
 </form>
-@elseif($attendance->clock_in_at && !$attendance->clock_out_at)
-<form action="{{ route('attendance.clockOut') }}" method="post">
+
+@elseif($attendance && $attendance->clock_out_at)
+<p>お疲れ様でした。</p>
+
+@elseif($attendance->clock_in_at && $break === null)
+<form action="{{ route('attendances.clockOut') }}" method="post">
     @csrf
     <button type="submit">退勤</button>
 </form>
-@else
-<p>お疲れ様でした。</p>
+<form action="{{ route('attendances.break-in') }}" method="post">
+    @csrf
+    <button type="submit">休憩入</button>
+</form>
+
+@elseif($attendance->clock_in_at && !$break->break_out_at)
+<form action="{{ route('attendances.break-out') }}" method="post">
+    @csrf
+    <button type="submit">休憩戻</button>
+</form>
 @endif
 
 @endsection
