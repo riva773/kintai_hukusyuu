@@ -1,19 +1,20 @@
 @extends('layouts.user')
 @section('title','勤怠登録')
 @section('content')
-<div id="dateNow"></div>
-<div id="timeNow"></div>
 
 @if(!$attendance)
+<p>勤務外</p>
 <form action="{{ route('attendances.clockIn') }}" method="post">
     @csrf
     <button type="submit">出勤</button>
 </form>
 
 @elseif($attendance && $attendance->clock_out_at)
+<p>退勤済み</p>
 <p>お疲れ様でした。</p>
 
 @elseif($attendance->clock_in_at && $break === null)
+<p>出勤中</p>
 <form action="{{ route('attendances.clockOut') }}" method="post">
     @csrf
     <button type="submit">退勤</button>
@@ -24,11 +25,15 @@
 </form>
 
 @elseif($attendance->clock_in_at && !$break->break_out_at)
+<p>休憩中</p>
 <form action="{{ route('attendances.break-out') }}" method="post">
     @csrf
     <button type="submit">休憩戻</button>
 </form>
 @endif
+
+<div id="dateNow"></div>
+<div id="timeNow"></div>
 
 @endsection
 
