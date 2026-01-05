@@ -3,12 +3,12 @@
 @section('content')
 <h1>勤怠一覧</h1>
 
-<a href="#">←前月</a>
+<a href="{{ route('attendances.index',['month' => $prevMonth]) }}">←前月</a>
 <h2>{{ $month }}</h2>
-<a href="#">翌月→</a>
+
+<a href="{{ route('attendances.index',['month' => $nextMonth]) }}">翌月→</a>
 
 @foreach($dates as $date)
-
 
 @php
 $attendance = $attendanceByDate[$date] ?? null;
