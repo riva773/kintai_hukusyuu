@@ -128,7 +128,7 @@ class AttendanceController extends Controller
 
     public function show(Request $request, $attendance_id)
     {
-        $attendance = Attendance::find($attendance_id);
+        $attendance = Attendance::findOrFail($attendance_id);
         return view('attendance.show', compact('attendance'));
     }
 }

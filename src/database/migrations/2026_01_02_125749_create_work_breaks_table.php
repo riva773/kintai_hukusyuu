@@ -20,6 +20,6 @@ class CreateWorkBreaksTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('breaks');
+        Schema::dropIfExists('work_breaks');
     }
 }
