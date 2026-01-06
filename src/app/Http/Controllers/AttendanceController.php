@@ -105,11 +105,10 @@ class AttendanceController extends Controller
         $user = Auth::user();
         $baseMonth = $request->filled('month')
             ? Carbon::createFromFormat('Y-m', $request->month)->startOfMonth()
-            : Carbon::now()->startOfMonth();
+            : Carbon::now();
         $month = $baseMonth->copy()->format('Y/m');
         $prevMonth = $baseMonth->copy()->subMonthNoOverflow()->format('Y-m');
         $nextMonth = $baseMonth->copy()->addMonthNoOverflow()->format('Y-m');
-
         $start_month = $baseMonth->copy()->startOfMonth();
         $end_month = $baseMonth->copy()->endOfMonth();
         $attendances = Attendance::where('user_id', $user->id)->whereBetween('work_date', [$start_month, $end_month])->with('breaks')->get();

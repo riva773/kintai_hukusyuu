@@ -5,7 +5,6 @@
 
 <a href="{{ route('attendances.index',['month' => $prevMonth]) }}">←前月</a>
 <h2>{{ $month }}</h2>
-
 <a href="{{ route('attendances.index',['month' => $nextMonth]) }}">翌月→</a>
 
 @foreach($dates as $date)
